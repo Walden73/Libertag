@@ -1,28 +1,1058 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LiberTag — Bientôt disponible</title>
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: #0f0f0f;
-      color: #ffffff;
-      font-family: sans-serif;
-      text-align: center;
-    }
-    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    p { color: #aaaaaa; font-size: 1.1rem; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LiberTag — Étiquetez vos images</title>
+<meta name="description" content="LiberTag — l'application qui range vos photos comme un album de famille. Étiquetez, classez, retrouvez chaque souvenir." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="site.css" />
+<link id="gfont-Fira-Sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&amp;display=swap">
+<link id="gfont-Quicksand" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap">
 </head>
 <body>
-  <h1>LiberTag</h1>
-  <p>Site en construction — bientôt disponible.</p>
+
+<!-- ============================ SVG SPRITE ============================ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F4CE78" />
+      <stop offset=".32" stop-color="#E0A93C" />
+      <stop offset=".62" stop-color="#D4A24A" />
+      <stop offset="1" stop-color="#A9772E" />
+    </linearGradient>
+    <radialGradient id="goldHi" cx=".5" cy=".3" r=".8">
+      <stop offset="0" stop-color="#F6D58A" stop-opacity=".85" />
+      <stop offset=".6" stop-color="#F6D58A" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- aperture / logo mark (diaphragm eyelet) -->
+  <symbol id="ico-aperture" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="34.95" fill="none" stroke="url(#goldGrad)" stroke-width="3.9" />
+    <path d="M20 50 A30 30 0 1 0 80 50 A30 30 0 1 0 20 50 Z M50 36.2 L61.95 43.1 L61.95 56.9 L50 63.8 L38.05 56.9 L38.05 43.1 Z" fill="url(#goldGrad)" fill-rule="evenodd" />
+    <g stroke="#15100F" stroke-width="2.25" stroke-linecap="round">
+      <line x1="50" y1="36.2" x2="67.84" y2="25.9" />
+      <line x1="61.95" y1="43.1" x2="79.79" y2="53.4" />
+      <line x1="61.95" y1="56.9" x2="61.95" y2="77.5" />
+      <line x1="50" y1="63.8" x2="32.16" y2="74.1" />
+      <line x1="38.05" y1="56.9" x2="20.21" y2="46.6" />
+      <line x1="38.05" y1="43.1" x2="38.05" y2="22.5" />
+    </g>
+  </symbol>
+
+  <!-- app icon : gilded tag, engraved label + image (intaglio) -->
+  <symbol id="ico-app" viewBox="0 0 200 200">
+    <rect x="0" y="0" width="200" height="200" rx="46" fill="url(#goldGrad)" />
+    <rect x="0" y="0" width="200" height="200" rx="46" fill="url(#goldHi)" style="mix-blend-mode:screen" />
+    <path d="M82 26 L118 26 L157 60 L157 168 Q157 182 143 182 L57 182 Q43 182 43 168 L43 60 Z" fill="none" stroke="#F6D58A" stroke-width="9" stroke-opacity=".55" transform="translate(0 2.4)" />
+    <path d="M82 26 L118 26 L157 60 L157 168 Q157 182 143 182 L57 182 Q43 182 43 168 L43 60 Z" fill="none" stroke="#160E03" stroke-width="6.5" stroke-opacity=".92" />
+    <circle cx="100" cy="48" r="11" fill="none" stroke="#F6D58A" stroke-width="7" stroke-opacity=".5" transform="translate(0 2.4)" />
+    <circle cx="100" cy="48" r="11" fill="none" stroke="#160E03" stroke-width="5" stroke-opacity=".92" />
+    <g transform="translate(48 102) scale(1.04 0.825)">
+      <g transform="translate(0 1.6)"><circle cx="26" cy="22" r="9.5" fill="#F6D58A" fill-opacity=".4" /><path d="M6 70 L36 26 L54 46 L72 18 L96 70 Z" fill="#F6D58A" fill-opacity=".38" /></g>
+      <circle cx="26" cy="22" r="9.5" fill="#15100F" /><path d="M6 70 L36 26 L54 46 L72 18 L96 70 Z" fill="#15100F" />
+      <g fill="none" stroke="#7C5620" stroke-width="1.4" stroke-opacity=".7" stroke-linejoin="round"><circle cx="26" cy="22" r="9.5" /><path d="M6 70 L36 26 L54 46 L72 18 L96 70 Z" /></g>
+    </g>
+  </symbol>
+
+  <!-- category + ui icons (stroke, currentColor) -->
+  <symbol id="ic-person" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.3" /><path d="M5.9 20a6.1 6.1 0 0 1 12.2 0" /></symbol>
+  <symbol id="ic-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c4.1-4.1 6.3-7.5 6.3-10.3A6.3 6.3 0 0 0 5.7 10.7C5.7 13.5 7.9 16.9 12 21z" /><circle cx="12" cy="10.3" r="2.3" /></symbol>
+  <symbol id="ic-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5.3" width="16" height="15" rx="2.4" /><line x1="4" y1="9.7" x2="20" y2="9.7" /><line x1="8.5" y1="3.2" x2="8.5" y2="6.9" /><line x1="15.5" y1="3.2" x2="15.5" y2="6.9" /></symbol>
+  <symbol id="ic-img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.6" y="4.7" width="16.8" height="14.6" rx="2.4" /><circle cx="9" cy="10" r="1.7" /><path d="M4.4 18l5.1-5 3.4 3.3 3.1-3 4 3.9" /></symbol>
+  <symbol id="ic-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polyline points="8.4 7 3.9 12 8.4 17" /><polyline points="15.6 7 20.1 12 15.6 17" /></symbol>
+  <symbol id="ic-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l8.2-8.2a1.6 1.6 0 0 1 1.1-.5H19a1 1 0 0 1 1 1v5.7a1.6 1.6 0 0 1-.5 1.1L11.3 20a1.5 1.5 0 0 1-2.1 0l-5.2-5.2a1.5 1.5 0 0 1 0-1.8z" /><circle cx="15.3" cy="8.7" r="1.3" /></symbol>
+  <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 12.5 10 17.5 19 7" /></symbol>
+  <symbol id="ic-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.4" /><line x1="16" y1="16" x2="20.5" y2="20.5" /></symbol>
+  <symbol id="ic-cols" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1.4" /><rect x="13.5" y="3.5" width="7" height="7" rx="1.4" /><rect x="3.5" y="13.5" width="7" height="7" rx="1.4" /><rect x="13.5" y="13.5" width="7" height="7" rx="1.4" /></symbol>
+  <symbol id="ic-more" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.5" /><circle cx="12" cy="12" r="1.5" /><circle cx="12" cy="19" r="1.5" /></symbol>
+  <symbol id="ic-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polyline points="14.5 18 8.5 12 14.5 6" /></symbol>
+  <symbol id="ic-select" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.6" y="3.6" width="16.8" height="16.8" rx="4.4" /><polyline points="8.4 12.2 11 14.8 15.8 9.4" /></symbol>
+  <symbol id="ic-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l8 4.2-8 4.2-8-4.2z" /><path d="M4.4 12l7.6 4 7.6-4" /></symbol>
+  <symbol id="ic-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.2a2 2 0 0 1 2-2h3.6l1.7 2H19a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></symbol>
+  <symbol id="ic-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.6l2.45 4.96 5.47.8-3.96 3.86.93 5.45L12 16.96l-4.89 2.57.93-5.45-3.96-3.86 5.47-.8z" /></symbol>
+  <symbol id="ic-sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18" /></symbol>
+  <symbol id="ic-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 13h6l-1 8 8-10h-6z" /></symbol>
+  <symbol id="ic-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l2.6-2.6a4 4 0 0 0-5.7-5.7L11.4 7" /><path d="M14 10a4 4 0 0 0-5.7 0L5.7 12.6a4 4 0 0 0 5.7 5.7L12.6 17" /></symbol>
+  <symbol id="ic-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.6v5.2c0 4.6-3 8-7 10-4-2-7-5.4-7-10V5.6z" /><polyline points="9 12 11 14 15 9.6" /></symbol>
+  <symbol id="ic-burger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" /></symbol>
+  <symbol id="ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18" /><line x1="18" y1="6" x2="6" y2="18" /></symbol>
+  <symbol id="ic-play" viewBox="0 0 24 24"><path fill="#34A853" d="M3.6 2.1 13.4 12 3.6 21.9c-.4-.2-.7-.6-.7-1.2V3.3c0-.6.3-1 .7-1.2z" /><path fill="#FBBC04" d="m16.9 8.5 3.6 2c.9.5.9 1.5 0 2l-3.6 2L13.4 12z" /><path fill="#EA4335" d="M3.6 2.1c.3-.2.8-.2 1.3.1l12 6.3-3.5 3.5z" /><path fill="#4285F4" d="m13.4 12 3.5 3.5-12 6.3c-.5.3-1 .3-1.3.1z" /></symbol>
+<symbol id="fx-scan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5V6.5A2.5 2.5 0 0 1 6.5 4H8.5" /><path d="M15.5 4h2A2.5 2.5 0 0 1 20 6.5V8.5" /><path d="M20 15.5v2a2.5 2.5 0 0 1-2.5 2.5H15.5" /><path d="M8.5 20H6.5A2.5 2.5 0 0 1 4 17.5V15.5" /><circle cx="12" cy="12" r="2.7" /><path d="M12 4.4V2.6M19.6 12h1.8" /></symbol>
+    <symbol id="fx-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.4" width="14" height="9.6" rx="2.4" /><path d="M8 10.4V8a4 4 0 0 1 8 0v2.4" /><circle cx="12" cy="14.6" r="1.25" fill="currentColor" stroke="none" /><path d="M12 15.7v1.9" /></symbol>
+    <symbol id="fx-albums" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 6.4V5.2A1.9 1.9 0 0 1 8.9 3.3H18.1A1.9 1.9 0 0 1 20 5.2v9.2A1.9 1.9 0 0 1 18.1 16.3H16.9" /><rect x="4" y="7.4" width="12.9" height="12.9" rx="2.2" /><circle cx="8" cy="11" r="1.35" /><path d="M4.5 18.3 8.2 14.8l2.3 2.1 2.7-2.5 3 2.8" /></symbol>
+    <symbol id="fx-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l8.2-8.2a1.6 1.6 0 0 1 1.1-.5H19a1 1 0 0 1 1 1v5.7a1.6 1.6 0 0 1-.5 1.1L11.3 20a1.5 1.5 0 0 1-2.1 0l-5.2-5.2a1.5 1.5 0 0 1 0-1.8z" /><circle cx="15.3" cy="8.7" r="1.3" /></symbol>
+    <symbol id="fx-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" /><circle cx="15.5" cy="7" r="2.5" /><circle cx="8.5" cy="12" r="2.5" /><circle cx="16.5" cy="17" r="2.5" /></symbol>
+    <symbol id="fx-chev-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="14.5 18 8.5 12 14.5 6" /></symbol>
+    <symbol id="fx-chev-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5 6 15.5 12 9.5 18" /></symbol>
+    <symbol id="fx-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12" /><polyline points="13 6 19 12 13 18" /></symbol>
+</svg>
+
+<!-- ============================ NAV ============================ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo-lockup" aria-label="LiberTag">
+      <img class="mark" src="assets/app-icon.png" alt="" />
+      <img class="wordmark-img" src="assets/wordmark-light.png" alt="LiberTag" />
+    </a>
+    <nav class="nav-links">
+      <a href="#tags" data-i18n="nav_system">Le Système</a>
+      <a href="#features" data-i18n="nav_example">Exemples</a>
+      <a href="#services" data-i18n="nav_features">Fonctionnalités</a>
+      <a href="#import-export" data-i18n="nav_import">Import-Export</a>
+      <a href="#pricing" data-i18n="nav_pricing">Tarifs</a>
+      <a href="#faq" data-i18n="nav_faq">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="lang-toggle" role="group" aria-label="Langue">
+        <button data-lang="fr" class="on">FR</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <a href="#download" class="btn btn-gold nav-cta" data-i18n="nav_cta">Télécharger</a>
+      <button class="burger" id="burger" aria-label="Menu"><svg width="22" height="22"><use href="#ic-burger" /></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#tags" data-i18n="nav_system">Le Système</a>
+  <a href="#features" data-i18n="nav_example">Exemples</a>
+  <a href="#services" data-i18n="nav_features">Fonctionnalités</a>
+  <a href="#import-export" data-i18n="nav_import">Import-Export</a>
+  <a href="#pricing" data-i18n="nav_pricing">Tarifs</a>
+  <a href="#faq" data-i18n="nav_faq">FAQ</a>
+  <a href="#download" class="btn btn-gold mm-cta" data-i18n="nav_cta">Télécharger</a>
+</div>
+
+<main id="top">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" data-hero="centered">
+  <div class="wrap">
+    <div class="hero-copy reveal">
+      <p class="eyebrow"><span data-i18n="hero_eyebrow">Étiquetage photo avancé</span></p>
+      <h1 class="display" data-i18n-html="hero_title">Vos souvenirs,<br />à <em>chérir</em>.</h1>
+      <p class="lead" data-i18n-html="hero_lead" style="margin: -10px 0px 36px">N'entassez plus vos milliers d'images en vrac.<br />Faites-en une bibliothèque vivante et retrouvez chaque photo en un clin d'oeil.<br />L'application qui libère enfin vos photos de l'oubli.</p>
+      <div class="compat">
+        <p class="compat-label" data-i18n="compat_label">Étiquettes compatibles avec</p>
+        <div class="compat-rows">
+          <div class="compat-row">
+            <div class="compat-item"><span class="compat-logo"><img src="assets/logo-lightroom.svg" alt="Lightroom" /></span><span class="compat-cap">Lightroom</span></div>
+            <div class="compat-item"><span class="compat-logo mk"><img src="assets/logo-digikam.svg" alt="digiKam" /></span><span class="compat-cap">digiKam</span></div>
+            <div class="compat-item"><span class="compat-logo mk"><img src="assets/logo-captureone.png" alt="Capture One" /></span><span class="compat-cap">Capture One</span></div>
+            <div class="compat-item"><span class="compat-logo"><img src="assets/logo-bridge.svg" alt="Adobe Bridge" /></span><span class="compat-cap">Adobe Bridge</span></div>
+            <div class="compat-item"><span class="compat-logo mk"><img src="assets/logo-acdsee.png" alt="ACDSee" /></span><span class="compat-cap">ACDSee</span></div>
+            <div class="compat-item"><span class="compat-logo mk"><img src="assets/logo-photomechanic.png" alt="Photo Mechanic" /></span><span class="compat-cap">Photo Mechanic</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="hero-glow"></div>
+
+      <div class="hero-stage">
+      <!-- Étiquettes flottantes · une petite hiérarchie par photo, reliée en pointillés -->
+      <!-- Ph (haut-gauche) — appréciation + lieu (oiseaux) -->
+      <div class="float-cluster fc1" aria-hidden="true">
+        <div class="tag-group stack">
+          <span class="tnode" style="--dotc:var(--lieu)"><span class="dot"></span><span data-i18n="tg_australia">Australie</span></span>
+          <span class="tnode rating" data-i18n-aria="aria_stars4" aria-label="4 étoiles sur 5">
+            <svg class="st on"><use href="#ic-star" /></svg>
+            <svg class="st on"><use href="#ic-star" /></svg>
+            <svg class="st on"><use href="#ic-star" /></svg>
+            <svg class="st on"><use href="#ic-star" /></svg>
+            <svg class="st"><use href="#ic-star" /></svg>
+          </span>
+        </div>
+      </div>
+      <!-- Ph (haut-droite) — Mariage • Léa • William (tags indépendants, empilés) -->
+      <div class="float-cluster fc2" aria-hidden="true">
+        <div class="tag-group stack">
+          <span class="tnode" style="--dotc:var(--even)"><span class="dot"></span><span data-i18n="tg_wedding">Mariage</span></span>
+          <span class="tnode" style="--dotc:var(--personne)"><span class="dot"></span>Léa</span>
+          <span class="tnode" style="--dotc:var(--personne)"><span class="dot"></span>William</span>
+          <span class="tnode rating" data-i18n-aria="aria_stars5" aria-label="5 étoiles sur 5">
+            <svg class="st on"><use href="#ic-star" /></svg>
+            <svg class="st on"><use href="#ic-star" /></svg>
+            <svg class="st on"><use href="#ic-star" /></svg>
+            <svg class="st on"><use href="#ic-star" /></svg>
+            <svg class="st on"><use href="#ic-star" /></svg>
+          </span>
+        </div>
+      </div>
+      <!-- Ph3 — Bébés ‐ Joseph (parenté) -->
+      <div class="float-cluster fc3" aria-hidden="true">
+        <div class="ftree">
+          <span class="tnode lvl0" style="--dotc:var(--personne)"><span class="dot"></span><span data-i18n="tg_babies">Bébés</span></span>
+          <span class="tnode lvl1" style="--dotc:var(--personne)"><span class="dot"></span>Joseph</span>
+        </div>
+      </div>
+      <!-- Ph4 — Voiture ‐ Chevrolet ‐ Bel Air 1957 (parenté sur 3 niveaux) -->
+      <div class="float-cluster fc4" aria-hidden="true">
+        <div class="ftree">
+          <span class="tnode lvl0" style="--dotc:var(--divers)"><span class="dot"></span><span data-i18n="tg_cars">Voitures</span></span>
+          <span class="tnode lvl1" style="--dotc:var(--divers)"><span class="dot"></span>Chevrolet</span>
+          <span class="tnode lvl2" style="--dotc:var(--divers)"><span class="dot"></span>Bel Air 1957</span>
+        </div>
+      </div>
+      <!-- Ph5 — Animaux ‐ Nawelle (parenté) -->
+      <div class="float-cluster fc5" aria-hidden="true">
+        <div class="ftree">
+          <span class="tnode lvl0" style="--dotc:var(--theme)"><span class="dot"></span><span data-i18n="tg_animals">Animaux</span></span>
+          <span class="tnode lvl1" style="--dotc:var(--theme)"><span class="dot"></span>Nawelle</span>
+        </div>
+      </div>
+      <!-- Ph6 — appréciation seule (3 étoiles sur 5) -->
+      <div class="float-cluster fc6" aria-hidden="true">
+        <span class="tnode rating" data-i18n-aria="aria_stars3" aria-label="3 étoiles sur 5">
+          <svg class="st on"><use href="#ic-star" /></svg>
+          <svg class="st on"><use href="#ic-star" /></svg>
+          <svg class="st on"><use href="#ic-star" /></svg>
+          <svg class="st"><use href="#ic-star" /></svg>
+          <svg class="st"><use href="#ic-star" /></svg>
+        </span>
+      </div>
+      <div class="phone">
+        <div class="phone-screen lt-screen">
+          <div class="status-bar"><span>9:30</span><span class="dots"><i></i><i></i><i></i></span></div>
+          <div class="lt-toolbar">
+            <div class="lt-tb-grp">
+              <svg width="19" height="19"><use href="#ic-back" /></svg>
+              <span class="lt-tb-sep"></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="2.5" /><line x1="9.5" y1="5" x2="9.5" y2="19" /></svg>
+            </div>
+            <div class="lt-tb-grp">
+              <span class="lt-tb-sep"></span>
+              <span class="lt-tb-tog"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="3.5" /></svg></span>
+              <span class="lt-tb-count"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="4" y1="9" x2="20" y2="9" /><line x1="4" y1="15" x2="20" y2="15" /><line x1="9" y1="4" x2="9" y2="20" /><line x1="15" y1="4" x2="15" y2="20" /></svg>2</span>
+              <svg width="19" height="19"><use href="#ic-more" /></svg>
+            </div>
+          </div>
+          <div class="lt-head">
+            <h3 class="lt-title" data-i18n="phone_lib">Photothèque</h3>
+            <span class="lt-count">9314 <svg width="17" height="17" viewBox="0 0 56 56" aria-hidden="true"><path fill="currentColor" d="M7.715 49.574h40.57c4.899 0 7.36-2.437 7.36-7.265V13.69c0-4.828-2.461-7.265-7.36-7.265H7.715C2.84 6.426.355 8.84.355 13.69v28.62c0 4.851 2.485 7.265 7.36 7.265m31.57-21.633c-1.055-.937-2.25-1.43-3.515-1.43c-1.313 0-2.462.446-3.54 1.407l-10.593 9.469l-4.336-3.938c-.985-.867-2.04-1.336-3.164-1.336c-1.032 0-2.04.446-3 1.313L4.129 39.73V13.88c0-2.438 1.312-3.68 3.656-3.68h40.43c2.32 0 3.656 1.242 3.656 3.68v25.875Zm-21.469.258c3.024 0 5.508-2.484 5.508-5.531c0-3.023-2.484-5.531-5.508-5.531c-3.046 0-5.53 2.508-5.53 5.531a5.54 5.54 0 0 0 5.53 5.531" /></svg></span>
+          </div>
+          <div class="lt-grid">
+            <div class="lt-photo" data-photo="1"><div class="ph" style="background:#523a23 url('uploads/ph2.png') center/cover"></div></div>
+            <div class="lt-photo" data-photo="2"><div class="ph" style="background:#3c2a1c url('uploads/ph1.jpg') center/cover"></div></div>
+            <div class="lt-photo" data-photo="3"><div class="ph" style="background:#2c2118 url('uploads/ph3.jpg') center/cover"></div></div>
+            <div class="lt-photo" data-photo="4"><div class="ph" style="background:#43301f url('uploads/ph4.png') center/cover"></div></div>
+            <div class="lt-photo" data-photo="5"><div class="ph" style="background:#352720 url('uploads/ph5.png') center/cover"></div></div>
+            <div class="lt-photo" data-photo="6"><div class="ph" style="background:#4b3722 url('uploads/ph6.jpg') center/cover"></div></div>
+          </div>
+          <div class="lt-tabbar">
+            <span class="lt-tab search"><span class="ico"><svg><use href="#ic-search" /></svg></span></span>
+            <span class="lt-tab"><svg><use href="#ic-person" /></svg><span data-i18n="tab_pers">Pers.</span></span>
+            <span class="lt-tab"><svg><use href="#ic-pin" /></svg><span data-i18n="tab_lieu">Lieu</span></span>
+            <span class="lt-tab"><svg><use href="#ic-cal" /></svg><span data-i18n="tab_even">Évèn.</span></span>
+            <span class="lt-tab"><svg><use href="#ic-img" /></svg><span data-i18n="tab_theme">Thème</span></span>
+            <span class="lt-tab"><svg><use href="#ic-code" /></svg><span data-i18n="tab_divers">Divers</span></span>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TAG SYSTEM (cream) ============================ -->
+<section class="band band-cream band-seam" id="tags">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow center"><span data-i18n="tagsys_eyebrow">Le système de tags</span></p>
+      <h2 class="section-title" data-i18n="tagsys_title">Cinq couleurs pour toute une vie</h2>
+      <p class="lead" data-i18n-html="tagsys_lead">Chaque Tag est lié à une grande famille reconnaissable d'un coup d'œil — et peut vivre sous un tag parent dans la <em>Tagothèque</em>.<br />La seule limite est celle de votre imagination.</p>
+    </div>
+    <div class="tagsys-grid">
+      <div class="cat-list reveal">
+        <div class="cat-row"><span class="cic" style="background:var(--personne)"><svg width="24" height="24"><use href="#ic-person" /></svg></span><span class="ctext"><span class="cname" data-i18n="cat1_t">Personne</span><div class="cdesc" data-i18n="cat1_p">Gens, familles, cercles d'amis</div></span></div>
+        <div class="cat-row"><span class="cic" style="background:var(--lieu)"><svg width="24" height="24"><use href="#ic-pin" /></svg></span><span class="ctext"><span class="cname" data-i18n="cat2_t">Lieu</span><div class="cdesc" data-i18n="cat2_p">Endroits, villes, pays</div></span></div>
+        <div class="cat-row"><span class="cic" style="background:var(--even)"><svg width="24" height="24"><use href="#ic-cal" /></svg></span><span class="ctext"><span class="cname" data-i18n="cat3_t">Évènement</span><div class="cdesc" data-i18n="cat3_p">Dates, fêtes, voyages</div></span></div>
+        <div class="cat-row"><span class="cic" style="background:var(--theme)"><svg width="24" height="24"><use href="#ic-img" /></svg></span><span class="ctext"><span class="cname" data-i18n="cat4_t">Thème</span><div class="cdesc" data-i18n="cat4_p">Styles, sujets, ambiances</div></span></div>
+        <div class="cat-row"><span class="cic" style="background:var(--divers)"><svg width="24" height="24"><use href="#ic-code" /></svg></span><span class="ctext"><span class="cname" data-i18n="cat5_t">Divers</span><div class="cdesc" data-i18n="cat5_p">Tout le reste</div></span></div>
+      </div>
+
+      <div class="tag-tree reveal">
+        <div class="tt-head" data-i18n="tree_head">Echantillon de la Tagothèque</div>
+        <div class="tag-node" style="background:rgba(174,192,210,.18);color:var(--lieu)"><svg width="15" height="15" style="color:var(--lieu)"><use href="#ic-pin" /></svg> <span data-i18n="tree_place">LIEU</span></div>
+        <div class="tag-children">
+          <div class="tag-node" style="color:var(--ink)"><span class="nd" style="background:var(--lieu)"></span> France</div>
+          <div class="tag-children">
+            <div class="tag-node" style="color:var(--ink)"><span class="nd" style="background:var(--lieu)"></span> Ardèche</div>
+            <div class="tag-node" style="color:var(--ink)"><span class="nd" style="background:var(--lieu)"></span> Haute-Garonne</div>
+            <div class="tag-children">
+              <div class="tag-node" style="color:var(--ink)"><span class="nd" style="background:var(--lieu)"></span> Toulouse</div>
+            </div>
+            <div class="tag-node" style="color:var(--ink)"><span class="nd" style="background:var(--lieu)"></span> Vaucluse</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FEATURES ============================ -->
+<section class="band band-seam" id="features" style="padding: 130px 0px 120px">
+  <style>
+    /* Panneau coloré décoratif — hauteur, position & inclinaison du bord supérieur pilotées par les Tweaks */
+    #features { overflow: hidden; }
+    .feat-bg {
+      position: absolute; left: 0; right: 0; z-index: 1;
+      pointer-events: none; display: none;
+      top: var(--feat-top, 0px);
+      height: var(--feat-height, 720px);
+      background: var(--feat-fill, linear-gradient(180deg, #231A10, #1A130E));
+      clip-path: var(--feat-clip, polygon(0 0, 100% 0, 100% 100%, 0 100%));
+      box-shadow: inset 0 1px 0 rgba(246,213,138,.10);
+    }
+    #features > .wrap { position: relative; z-index: 2; }
+  </style>
+  <div class="feat-bg" aria-hidden="true"></div>
+  <div class="wrap" style="padding: 0px 48px 0px 0px; max-width: 1180px">
+    <div class="section-head reveal">
+      <p class="eyebrow center"><span data-i18n="feat_eyebrow">Plaisir des retrouvailles</span></p>
+      <h2 class="section-title" data-i18n="feat_title">Revoir ses photos n'a jamais été aussi utile — ni aussi amusant.</h2>
+      <p class="lead" data-i18n-html="feat_lead">Prenez-vous au jeu de l'étiquetage de souvenirs,<br />puis créez d'exceptionnels albums en un rien de temps.</p>
+    </div>
+
+    <!-- Étiquetage : individuel (carousel) ↔ collectif (tablette) -->
+    <div class="attr-flow" style="margin: 100px 40px 40px 0px; text-align: right">
+      <svg class="attr-line" preserveAspectRatio="none" aria-hidden="true"><path class="attr-line-path" d=""></path></svg>
+      <h3 class="attr-title attr-t1 reveal" style="margin: 0px 0px 10px 20px; gap: 3px; font-family: Quicksand; font-size: 20px; color: rgb(255, 228, 177); background-color: rgb(164, 79, 20); opacity: 1; font-weight: 900; border-radius: 16px; padding: 14px 22px; align-items: flex-start; height: 79px; flex-direction: column"><span class="hl" data-i18n="feat_attr1" style="letter-spacing: 0px">Attribuez vos Tags</span><span class="hl" data-i18n="feat_attr2" style="letter-spacing: 0.2px">une photo après l'autre…</span></h3>
+      <div class="attr-mid" style="margin: 0px">
+
+    <!-- Scène d'attribution de tags · carousel auto de 10 photos -->
+    <div class="tagscene reveal" style="margin: 0px">
+      <div class="ts-stage" data-i18n-aria="aria_demo_tagging" aria-label="Démonstration d'étiquetage" role="img" style="margin: -100px 0px 0px; height: 700px">
+        <div class="ts-glow" aria-hidden="true"></div>
+        <figure class="ts-shot on"><div class="ts-tags"><span class="tnode t-step" style="--dotc:var(--personne);--si:0"><span class="dot"></span>Michaël</span><span class="tnode t-step" style="--dotc:var(--theme);--si:1"><span class="dot"></span><span data-i18n="tg_childhood">Enfance</span></span><span class="tnode t-step" style="--dotc:var(--divers);--si:2"><span class="dot"></span><span data-i18n="tg_photobooth">Photomaton</span></span></div><div class="ts-print"><img src="assets/carousel/c01.jpg" alt="Portrait d'enfant" loading="lazy" /></div></figure>
+        <figure class="ts-shot"><div class="ts-tags"><span class="tnode t-step" style="--dotc:var(--personne);--si:0"><span class="dot"></span><span data-i18n="tg_dad">Papa</span></span><span class="tnode t-step" style="--dotc:var(--divers);--si:1"><span class="dot"></span><span data-i18n="tg_mudbath">Bain de boue</span></span></div><div class="ts-print"><img src="assets/carousel/c02.jpg" alt="Portrait d'enfant" loading="lazy" /></div></figure>
+        <figure class="ts-shot"><div class="ts-tags"><span class="tnode t-step" style="--dotc:var(--even);--si:0"><span class="dot"></span><span data-i18n="tg_holiday84">Vacances 1984</span></span><div class="ftree"><span class="tnode lvl0 t-step" style="--dotc:var(--lieu);--si:1"><span class="dot"></span><span data-i18n="tg_italy">Italie</span></span><span class="tnode lvl1 t-step" style="--dotc:var(--lieu);--si:2"><span class="dot"></span><span data-i18n="tg_pisa">Tour de Pise</span></span></div></div><div class="ts-print"><img src="assets/carousel/c03.jpg" alt="Tour de Pise, Italie" loading="lazy" /></div></figure>
+        <figure class="ts-shot"><div class="ts-tags"><div class="ftree"><span class="tnode lvl0 t-step" style="--dotc:var(--personne);--si:0"><span class="dot"></span><span data-i18n="tg_ancestors">Aïeux</span></span><span class="tnode lvl1 t-step" style="--dotc:var(--personne);--si:1"><span class="dot"></span>Leon</span></div></div><div class="ts-print"><img src="assets/carousel/c04.jpg" alt="Portrait ancien d'un homme" loading="lazy" /></div></figure>
+        <figure class="ts-shot"><div class="ts-tags"><span class="tnode t-step" style="--dotc:var(--personne);--si:0"><span class="dot"></span>Orthal</span><span class="tnode t-step" style="--dotc:var(--personne);--si:1"><span class="dot"></span>Ivine</span><span class="tnode t-step" style="--dotc:var(--lieu);--si:2"><span class="dot"></span>Dinard</span><span class="tnode t-step" style="--dotc:var(--theme);--si:3"><span class="dot"></span><span data-i18n="tg_beach">Plage</span></span></div><div class="ts-print"><img src="assets/carousel/c05.jpg" alt="Homme sur la plage" loading="lazy" /></div></figure>
+        <figure class="ts-shot"><div class="ts-tags"><span class="tnode t-step" style="--dotc:var(--theme);--si:0"><span class="dot"></span><span data-i18n="tg_wallplants">Plantes muricoles</span></span></div><div class="ts-print"><img src="assets/carousel/c06.jpg" alt="Pâquerette dans la pierre" loading="lazy" /></div></figure>
+        <figure class="ts-shot"><div class="ts-tags"><div class="ftree"><span class="tnode lvl0 t-step" style="--dotc:var(--personne);--si:0"><span class="dot"></span><span data-i18n="tg_animals">Animaux</span></span><span class="tnode lvl1 t-step" style="--dotc:var(--personne);--si:1"><span class="dot"></span>Nawelle</span></div></div><div class="ts-print"><img src="assets/carousel/c07.jpg" alt="Chat" loading="lazy" /></div></figure>
+        <figure class="ts-shot"><div class="ts-tags"><div class="ftree"><span class="tnode lvl0 t-step" style="--dotc:var(--personne);--si:0"><span class="dot"></span><span data-i18n="tg_insects">Insectes</span></span><span class="tnode lvl1 t-step" style="--dotc:var(--personne);--si:1"><span class="dot"></span><span data-i18n="tg_bees">Abeilles</span></span></div><div class="ftree"><span class="tnode lvl0 t-step" style="--dotc:var(--theme);--si:2"><span class="dot"></span><span data-i18n="tg_flowers">Fleurs</span></span><span class="tnode lvl1 t-step" style="--dotc:var(--theme);--si:3"><span class="dot"></span><span data-i18n="tg_dandelion">Pissenlit</span></span></div></div><div class="ts-print"><img src="assets/carousel/c08.jpg" alt="Abeille sur un pissenlit" loading="lazy" /></div></figure>
+        <figure class="ts-shot"><div class="ts-tags"><div class="ftree"><span class="tnode lvl0 t-step" style="--dotc:var(--theme);--si:0"><span class="dot"></span><span data-i18n="tg_celebrities">Célébrités</span></span><span class="tnode lvl1 t-step" style="--dotc:var(--personne);--si:1"><span class="dot"></span>Abbé Lemaître</span></div></div><div class="ts-print"><img src="assets/carousel/c09.jpg" alt="Portrait d'un prêtre" loading="lazy" /></div></figure>
+        <figure class="ts-shot"><div class="ts-tags"><span class="tnode t-step" style="--dotc:var(--personne);--si:0"><span class="dot"></span><span data-i18n="tg_mom">Maman</span></span><span class="tnode t-step" style="--dotc:var(--theme);--si:1"><span class="dot"></span><span data-i18n="tg_youth">Jeunesse</span></span></div><div class="ts-print"><img src="assets/carousel/c10.jpg" alt="Portrait d'une femme" loading="lazy" /></div></figure>
+        <div class="ts-dots" aria-hidden="true" style="margin: 0px 0px 75px">
+          <i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Démo · sélection « Noir & Blanc » sur la photothèque -->
+    <style>
+      .cwf-demo{margin-top:64px;position:relative;display:flex;align-items:flex-start;justify-content:center;gap:clamp(20px,3vw,40px);flex-wrap:wrap;}
+      .cwf-phone{position:relative;width:clamp(320px,40vw,420px);flex:0 0 auto;padding:18px;border-radius:28px;background:linear-gradient(155deg,#2b2622,#181512);box-shadow:0 30px 70px -28px rgba(0,0,0,.6),inset 0 0 0 2px rgba(255,255,255,.05);}
+      .cwf-screen{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:864/1299;background:#1a1714;}
+      .cwf-screen img{display:block;width:100%;height:100%;object-fit:cover;}
+      .cwf-cam{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.25);box-shadow:inset 0 0 0 1px rgba(0,0,0,.4);z-index:3;}
+      .cwf-checks{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(4,1fr);padding:1.4% 1.2% 0;gap:1.6%;z-index:2;pointer-events:none;}
+      .cwf-checks span{position:relative;}
+      .cwf-checks span::after{content:"";position:absolute;top:9%;right:11%;width:30px;height:30px;border-radius:50%;background:#E2A93A url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231a1206' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/16px no-repeat;box-shadow:0 4px 10px -2px rgba(0,0,0,.45);opacity:0;transform:scale(.4);animation:cwfPop 7s ease-in-out infinite;}
+      @keyframes cwfPop{0%{opacity:0;transform:scale(.4)}7%,84%{opacity:1;transform:scale(1)}94%,100%{opacity:0;transform:scale(.4)}}
+      .cwf-tag{position:absolute;top:18px;left:calc(100% + clamp(14px,1.6vw,24px));transform:scale(2.5);transform-origin:left top;opacity:0;animation:cwfTag 7s ease-in-out infinite;}
+      @keyframes cwfTag{0%{opacity:0}7%,84%{opacity:1}94%,100%{opacity:0}}
+      @media (prefers-reduced-motion:reduce){.cwf-checks span::after,.cwf-tag{animation:none;opacity:1}}
+
+      /* ---- titrage : squircle + fil doré courbe ---- */
+      .attr-flow{--surlignage:#5C4620;position:relative;}
+      .attr-title{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;background:var(--surlignage);color:#F6EEDF;border-radius:clamp(18px,2.2vw,26px);padding:14px 22px;font-family:var(--ui);font-weight:700;font-size:clamp(21px,2.3vw,30px);line-height:1.2;letter-spacing:.005em;margin:0;position:relative;z-index:2;box-shadow:0 12px 32px -18px rgba(0,0,0,.65);width:max-content;max-width:100%;}
+      .attr-title .hl{display:block;background:none;padding:0;}
+      .attr-t2{position:absolute;top:112px;left:calc(100% + clamp(14px,1.6vw,24px));align-items:flex-start;text-align:left;}
+      .attr-mid{position:relative;z-index:1;padding-left:clamp(26px,3.5vw,48px);}
+      .attr-mid .tagscene{margin-top:clamp(20px,3vw,36px);position:relative;}
+      .attr-t1{position:relative;z-index:5;width:max-content;}
+      .attr-connect{display:flex;justify-content:flex-end;margin-top:clamp(26px,4vw,50px);}
+      .attr-line{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:visible;}
+      .attr-line-path{fill:none;stroke:var(--accent-chaud,#E0A93C);stroke-width:7;stroke-linecap:round;stroke-dasharray:0 18;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35));}
+      .attr-line-handle{position:absolute;width:22px;height:22px;border-radius:50%;transform:translate(-50%,-50%);
+        cursor:grab;z-index:12;touch-action:none;border:2px solid var(--accent-chaud,#E0A93C);
+        background:radial-gradient(circle,var(--accent-chaud,#E0A93C) 0 30%,rgba(0,0,0,0) 36%);
+        box-shadow:0 2px 8px rgba(0,0,0,.4);display:none;}
+      .attr-line-handle:active{cursor:grabbing;}
+      @media (max-width:640px){.attr-title{font-size:18px;}.attr-t2{align-items:flex-start;text-align:left;}.attr-connect{justify-content:flex-start;}}
+    </style>
+    <div class="cwf-demo reveal" aria-hidden="true" style="width: 500px; margin: 90px 0px 0px">
+      <div class="cwf-phone" style="margin: 0px">
+        <div class="cwf-cam"></div>
+        <div class="cwf-screen">
+          <img src="uploads/photos1.png" alt="Photothèque · sélection Noir &amp; Blanc" />
+          <div class="cwf-checks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+        <span class="tnode cwf-tag" style="--dotc: var(--divers); height: 26px; padding: 4px 8px; margin: -12px 0px 0px"><span class="dot"></span><span data-i18n="tg_bw">Noir &amp; Blanc</span></span>
+        <h3 class="attr-title attr-t2 reveal" style="gap: 3px; font-family: Quicksand; font-size: 20px; border-radius: 18px; background-color: rgb(164, 79, 20); margin: 40px 0px 0px 10px; align-items: flex-start"><span class="hl" data-i18n="feat_attr3" style="color: rgb(255, 228, 177)">…ou bien en</span><span class="hl" data-i18n="feat_attr4" style="color: rgb(255, 228, 177)">sélection groupée !</span></h3>
+      </div>
+    </div>
+      </div><!-- /.attr-mid -->
+    </div><!-- /.attr-flow -->
+  </div>
+</section>
+
+<!-- ============================ SERVICES COMPRIS (cream) ============================ -->
+<section class="band band-seam fxr" id="services" data-screen-label="Services compris">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow center"><span data-i18n="svc_eyebrow">Fonctionnalités</span></p>
+      <h2 class="section-title" data-i18n-html="svc_title">Services <em>compris</em></h2>
+      <p class="lead" data-i18n-html="svc_lead">Autant joindre l'utile à l'agréable<br />et tagger dans une interface riche et confortable.</p>
+    </div>
+
+<div class="fxr-main" style="height: 650px; margin: 80px 0px 0px">
+
+      <!-- ===== index éditorial · piliers 02 → 06 ===== -->
+      <ol class="fxr-index">
+        <li tabindex="0">
+          <span class="fxr-n">02</span>
+          <span class="fxr-ic"><svg width="20" height="20"><use href="#fx-albums" /></svg></span>
+          <h3 class="fxr-t" data-i18n="svc2_t">Albums sophistiqués</h3>
+          <span class="fxr-go"><svg width="18" height="18"><use href="#fx-arrow" /></svg></span>
+          <div class="fxr-detail"><p data-i18n-html="svc2_p">Mixez vos étiquettes pour créer des albums sophistiqués en un tournemain&nbsp;!</p></div>
+        </li>
+        <li tabindex="0">
+          <span class="fxr-n">03</span>
+          <span class="fxr-ic"><svg width="20" height="20"><use href="#fx-scan" /></svg></span>
+          <h3 class="fxr-t" data-i18n-html="svc3_t">Reconnaissance&nbsp;IA</h3>
+          <span class="fxr-go"><svg width="18" height="18"><use href="#fx-arrow" /></svg></span>
+          <div class="fxr-detail"><p data-i18n="svc3_p">Reconnaissance faciale, lecture des métadonnées pour opérer des rapprochements : l'IA intégrée vous fera des suggestions de plus en plus pertinentes au fil du temps.</p></div>
+        </li>
+        <li tabindex="0">
+          <span class="fxr-n">04</span>
+          <span class="fxr-ic"><svg width="20" height="20"><use href="#fx-sliders" /></svg></span>
+          <h3 class="fxr-t" data-i18n="svc4_t">Édition de photos</h3>
+          <span class="fxr-go"><svg width="18" height="18"><use href="#fx-arrow" /></svg></span>
+          <div class="fxr-detail"><p data-i18n="svc4_p">Une petite gamme d'outils élémentaires pour des retouches rapides, individuelles ou groupées : pivoter, rogner, luminosité, saturation et quelques filtres de base…</p></div>
+        </li>
+        <li tabindex="0">
+          <span class="fxr-n">05</span>
+          <span class="fxr-ic"><svg width="20" height="20"><use href="#fx-tag" /></svg></span>
+          <h3 class="fxr-t" data-i18n-html="svc5_t">Modes multiples<br>de tagging</h3>
+          <span class="fxr-go"><svg width="18" height="18"><use href="#fx-arrow" /></svg></span>
+          <div class="fxr-detail"><p data-i18n="svc5_p">Pour aller encore plus vite, l'application propose des interfaces de tagging malines, adaptées à toutes les formes de collections photo.</p></div>
+        </li>
+        <li tabindex="0">
+          <span class="fxr-n">06</span>
+          <span class="fxr-ic"><svg width="20" height="20"><use href="#fx-lock" /></svg></span>
+          <h3 class="fxr-t" data-i18n="svc6_t">Coffre privé</h3>
+          <span class="fxr-go"><svg width="18" height="18"><use href="#fx-arrow" /></svg></span>
+          <div class="fxr-detail"><p data-i18n="svc6_p">Un coffre privé, avec code de déverrouillage, pour ranger vos photos les plus confidentielles — avec création de sous-dossiers. Petit bonus : il possède aussi sa propre arborescence de tags.</p></div>
+        </li>
+      </ol>
+
+      <!-- ===== héros · Visionneuse 7 niveaux ===== -->
+      <div class="fxr-hero">
+        <span class="fx-pill" data-i18n="svc_pill">01 · Le pilier</span>
+        <div class="fxr-pillar-head">
+          <h3 class="fxr-pillar-title" data-i18n-html="svc1_t">Visionneuse <em>7&nbsp;niveaux</em></h3>
+          <p class="fxr-pillar-lead" data-i18n="svc1_lead">Une large palette de vues adaptées à vos besoins pour un tagging rapide…</p>
+        </div>
+
+        <div class="fan" role="img" data-i18n-aria="aria_fan" aria-label="Sept niveaux de visionneuse déployés en éventail, du swipe plein écran à la grille six colonnes">
+          <div class="fan-glow" aria-hidden="true"></div>
+          <figure class="vp" style="--i:0"><div class="vp-phone"><div class="vp-screen" data-mode="swipe"></div></div></figure>
+          <figure class="vp" style="--i:1"><div class="vp-phone"><div class="vp-screen" data-cols="1"></div></div></figure>
+          <figure class="vp" style="--i:2"><div class="vp-phone"><div class="vp-screen" data-cols="2"></div></div></figure>
+          <figure class="vp" style="--i:3"><div class="vp-phone"><div class="vp-screen" data-cols="3"></div></div></figure>
+          <figure class="vp" style="--i:4"><div class="vp-phone"><div class="vp-screen" data-cols="4"></div></div></figure>
+          <figure class="vp" style="--i:5"><div class="vp-phone"><div class="vp-screen" data-cols="5"></div></div></figure>
+          <figure class="vp is-active" style="--i:6"><div class="vp-phone"><div class="vp-screen" data-cols="6"></div></div></figure>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+/* =========================================================
+   FONCTIONNALITÉS — composition éditoriale "éventail"
+   ========================================================= */
+.fxr { padding: clamp(80px, 11vw, 150px) 0 120px; overflow: hidden; }
+
+/* ---- en-tête ---- */
+.fxr-head .eyebrow { justify-content: flex-start; }
+.fxr-head-row {
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap: clamp(24px, 5vw, 70px);
+  align-items: end;
+  margin-bottom: clamp(40px, 6vw, 76px);
+}
+.fxr-headline {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(34px, 5.6vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -.015em;
+  color: var(--creme);
+  margin: 0;
+}
+.fxr-headline em { font-style: italic; color: var(--accent); }
+.fxr-intro { margin: 0 0 8px; font-size: clamp(15px, 1.8vw, 18px); line-height: 1.6; color: var(--muted); max-width: 38ch; }
+@media (max-width: 880px) { .fxr-head-row { grid-template-columns: 1fr; align-items: start; gap: 18px; } }
+
+/* ---- la grande répartition asymétrique ---- */
+.fxr-main {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(30px, 5vw, 76px);
+  align-items: start;
+}
+
+/* ================= INDEX 02→06 ================= */
+.fxr-index {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line-strong);
+  position: relative;
+  z-index: 4;
+}
+.fxr-index li {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  align-items: center;
+  column-gap: clamp(14px, 1.6vw, 22px);
+  padding: clamp(18px, 2.2vw, 26px) 14px;
+  border-bottom: 1px solid var(--line);
+  border-radius: 14px;
+  cursor: default;
+  outline: none;
+  transition: padding-left .3s cubic-bezier(.2,.7,.3,1), background .3s, border-color .3s;
+}
+.fxr-index li:hover,
+.fxr-index li:focus-visible {
+  padding-left: 20px;
+  border-bottom-color: var(--accent-line);
+  background: rgba(212,162,74,.05);
+}
+.fxr-n {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1;
+  color: rgba(239,227,210,.2);
+  letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+  transition: color .3s;
+  min-width: 1.6ch;
+}
+.fxr-index li:hover .fxr-n { color: var(--accent); }
+.fxr-ic {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent-line);
+  flex: none;
+  transition: background .3s;
+}
+.fxr-index li:hover .fxr-ic { background: rgba(212,162,74,.18); }
+.fxr-t {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(19px, 2vw, 25px);
+  line-height: 1.12;
+  color: var(--creme);
+  margin: 0;
+  text-wrap: balance;
+}
+.fxr-go {
+  color: var(--accent);
+  display: inline-flex;
+  opacity: 1;
+  transform: rotate(90deg);
+  transition: opacity .3s, transform .3s;
+}
+.fxr-index li:hover .fxr-go,
+.fxr-index li:focus-visible .fxr-go { opacity: 1; transform: rotate(90deg); }
+
+/* glissière : le détail se déploie sous le titre */
+.fxr-detail {
+  grid-column: 3 / 5;
+  grid-row: 2;
+  overflow: hidden;
+  margin: 0;
+  max-height: 0;
+  transition: max-height .46s cubic-bezier(.2,.7,.3,1);
+}
+.fxr-index li:hover .fxr-detail,
+.fxr-index li:focus-visible .fxr-detail { max-height: 16em; }
+.fxr-detail p {
+  margin: 0;
+  padding-top: 14px;
+  font-size: 14.5px;
+  line-height: 1.62;
+  color: var(--muted);
+  max-width: 48ch;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity .3s ease .08s, transform .4s cubic-bezier(.2,.7,.3,1) .08s;
+}
+.fxr-index li:hover .fxr-detail p,
+.fxr-index li:focus-visible .fxr-detail p { opacity: 1; transform: none; }
+
+/* ================= HÉROS — pilier + éventail ================= */
+.fxr-hero { position: relative; }
+.fxr-pillar-head { max-width: 34ch; }
+.fx-pill {
+  display: inline-block;
+  font-family: var(--ui);
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent-line);
+  border-radius: 999px;
+  padding: 8px 15px;
+}
+.fxr-micro {
+  font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--faint); font-weight: 700; margin: 20px 0 10px;
+}
+.fxr-pillar-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(32px, 4vw, 50px);
+  line-height: 1.02;
+  letter-spacing: -.01em;
+  color: var(--creme);
+  margin: 0;
+}
+.fxr-pillar-title em { font-style: italic; color: var(--accent); }
+.fxr-pillar-lead { font-size: 15.5px; line-height: 1.62; color: var(--muted); margin: 14px 0 0; max-width: 40ch; }
+
+.fxr-legend { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 22px; }
+.fxr-chip {
+  font-family: 'Fira Sans', var(--ui);
+  font-size: 12px; font-weight: 600; letter-spacing: .03em;
+  color: var(--muted);
+  background: rgba(239,227,210,.05);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 5px 12px;
+  white-space: nowrap;
+}
+.fxr-chip.on { color: var(--accent-ink); background: var(--accent); border-color: transparent; font-weight: 700; }
+
+/* ---- l'éventail ---- */
+.fan {
+  position: relative;
+  height: clamp(440px, 44vw, 600px);
+  margin-top: clamp(28px, 3vw, 46px);
+}
+.fan-watermark {
+  position: absolute;
+  top: -6%; right: -2%;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(280px, 36vw, 520px);
+  line-height: .8;
+  color: rgba(212,162,74,.05);
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+.fan-glow {
+  position: absolute;
+  left: 36%; bottom: 6%;
+  width: 70%; height: 70%;
+  transform: translate(-50%, 0);
+  background: radial-gradient(50% 50% at 50% 50%, rgba(212,162,74,.26), transparent 72%);
+  filter: blur(24px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* chaque téléphone, déployé radialement depuis le coin bas-gauche */
+.fan .vp {
+  position: absolute;
+  bottom: 0;
+  left: 4%;
+  margin: 0;
+  width: clamp(104px, 12vw, 134px);
+  transform-origin: bottom center;
+  --x: calc(var(--i) * 1.02 * clamp(48px, 5.4vw, 66px) * var(--phone-spread, 1));
+  --y: calc(var(--i) * -1 * clamp(34px, 3.8vw, 46px) * var(--phone-spread, 1));
+  --rot: calc((var(--i) - 3) * 2.6deg);
+  --sc: calc((0.9 + var(--i) * 0.03) * var(--phone-scale, 1));
+  transform: translate(var(--x), var(--y)) rotate(var(--rot)) scale(var(--sc));
+  z-index: calc(var(--i) + 1);
+  transition: transform .4s cubic-bezier(.2,.7,.3,1), filter .4s;
+}
+.vp-phone {
+  width: 100%;
+  aspect-ratio: 9 / 19;
+  border-radius: 17px;
+  padding: 4px;
+  background: linear-gradient(160deg, #3d3127, #1b1410);
+  box-shadow: 0 26px 44px -22px rgba(0,0,0,.92), inset 0 0 0 1px rgba(246,213,138,.12);
+  position: relative;
+  transition: box-shadow .4s;
+}
+.vp-phone::before {
+  content: "";
+  position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+  width: 24%; height: 3.5px; border-radius: 3px;
+  background: rgba(0,0,0,.55);
+  z-index: 3;
+}
+.vp-screen {
+  width: 100%; height: 100%;
+  border-radius: 13px;
+  overflow: hidden;
+  background: #120d0b;
+  display: grid;
+  gap: 1.6px;
+  padding: 5px 3.5px 3.5px;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.55);
+}
+.vp-screen i { display: block; border-radius: 1.5px; }
+
+/* swipe : une photo plein écran + chevrons */
+.vp-screen[data-mode="swipe"] {
+  display: flex; align-items: center; justify-content: center;
+  padding: 3.5px; position: relative;
+}
+.vp-swipe-photo {
+  width: 100%; height: 100%; border-radius: 9px;
+  background: linear-gradient(150deg, #8a6736, #4a361f 55%, #2e2114);
+  box-shadow: inset 0 0 0 1px rgba(246,213,138,.14);
+}
+.vp-swipe-chev {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 11px; height: 11px; color: rgba(246,238,223,.9);
+}
+.vp-swipe-chev.l { left: 5px; }
+.vp-swipe-chev.r { right: 5px; }
+
+/* niveau de tête (Grid-6) */
+.fan .vp.is-active .vp-phone {
+  box-shadow: 0 32px 50px -18px rgba(212,162,74,.6), inset 0 0 0 2px rgba(246,213,138,.6);
+}
+.fan .vp.is-active::after {
+  content: "Grid 6";
+  position: absolute;
+  top: -26px; left: 50%; transform: translateX(-50%);
+  font-family: 'Fira Sans', var(--ui);
+  font-size: 11px; font-weight: 700; letter-spacing: .04em;
+  color: var(--accent-ink);
+  background: var(--accent);
+  padding: 4px 11px; border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px -8px rgba(212,162,74,.6);
+}
+
+/* survol : le niveau passe devant et s'illumine, sans casser l'éventail */
+.fan .vp:hover { z-index: 40; filter: brightness(1.06); }
+.fan .vp:hover .vp-phone { box-shadow: 0 34px 54px -18px rgba(212,162,74,.55), inset 0 0 0 2px rgba(246,213,138,.5); }
+
+/* ---- responsive ---- */
+@media (max-width: 880px) {
+  .fxr-main { grid-template-columns: 1fr; gap: 50px; }
+  .fan { margin-inline: auto; max-width: 560px; }
+}
+@media (max-width: 600px) {
+  /* l'éventail se range en bande déroulante d'aplomb */
+  .fan {
+    height: auto;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 26px 4px 14px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .fan-watermark, .fan-glow { display: none; }
+  .fan .vp {
+    position: static;
+    flex: 0 0 auto;
+    width: 86px;
+    transform: none !important;
+  }
+  .fan .vp.is-active { transform: translateY(-10px) !important; }
+  .fan .vp.is-active::after { top: -22px; }
+  /* sur tactile : la glissière reste ouverte */
+  .fxr-n { color: var(--accent); }
+  .fxr-detail { max-height: 16em; }
+  .fxr-detail p { opacity: 1; transform: none; }
+  .fxr-go { opacity: 1; transform: rotate(90deg); }
+}
+
+/* ===== déplacement libre par Tweaks (translate compose avec les transform) ===== */
+/* positions figées — transférables dans n'importe quelle section */
+.fx-pill         { translate: -455px 0px; }
+.fxr-pillar-head { translate: -451px 22px; }
+.fan             { translate: -447px -168px; rotate: 11deg; --phone-spread: 0.7; --phone-scale: 1; }
+.fxr-index       { translate: 622px 65px; }
+</style>
+
+<!-- ============================ IMPORT / EXPORT ============================ -->
+<section class="band band-panel band-seam" id="import-export">
+  <style>
+    .xmp-showcase{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.04fr);
+      align-items:start;gap:clamp(34px,5vw,72px);margin-top:clamp(40px,6vw,72px);}
+    /* écran d'export — squircle à cadre doré */
+    .xmp-frame{position:relative;padding:11px;border-radius:9% / 11%;
+      background:linear-gradient(155deg,#F4CE78,#E0A93C 40%,#A9772E);
+      box-shadow:0 44px 96px -46px rgba(0,0,0,.9),0 0 0 1px rgba(246,213,138,.35);}
+    .xmp-frame::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+      background:radial-gradient(120% 80% at 30% 0%,rgba(255,247,225,.55),rgba(255,247,225,0) 55%);
+      mix-blend-mode:screen;}
+    .xmp-frame img{display:block;width:100%;border-radius:7% / 9%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.55);}
+    .xmp-cap{margin:16px 6px 0;font-size:13.5px;line-height:1.5;color:var(--muted);text-align:center;font-weight:600;}
+    /* synthèse */
+    .xmp-syn{display:flex;flex-direction:column;gap:clamp(30px,3.4vw,42px);}
+    .xmp-block > .eyebrow{margin-bottom:10px;}
+    .xmp-block h3{font-family:var(--serif);font-weight:500;font-size:clamp(22px,2.4vw,28px);
+      color:var(--creme);margin:0 0 16px;line-height:1.12;}
+    .xmp-fields{list-style:none;margin:0;padding:0;}
+    .xmp-fields li{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;align-items:baseline;
+      padding:15px 0;border-top:1px solid var(--line);}
+    .xmp-fields li:first-child{border-top:0;padding-top:2px;}
+    .xmp-fields code{grid-row:span 2;align-self:start;font-family:'Fira Sans',var(--ui);font-weight:600;
+      font-size:13px;letter-spacing:.01em;color:var(--accent);background:var(--accent-soft);
+      border:1px solid var(--accent-line);border-radius:9px;padding:6px 11px;white-space:nowrap;}
+    .xmp-fields .ns{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);}
+    .xmp-fields p{margin:2px 0 0;font-size:14.5px;line-height:1.5;color:var(--ink);}
+    .xmp-fields .kpath{font-family:'Fira Sans',var(--ui);font-size:12.5px;color:var(--creme);
+      background:rgba(239,227,210,.07);border-radius:6px;padding:1px 6px;white-space:nowrap;}
+    .xmp-note{margin:18px 0 0;font-size:13px;line-height:1.55;color:var(--muted);font-style:italic;}
+    .xmp-modes{display:flex;flex-direction:column;gap:12px;}
+    .xmp-mode{position:relative;padding:18px 20px;border-radius:18px;background:rgba(239,227,210,.03);
+      border:1px solid var(--line-strong);}
+    .xmp-mode.featured{border-color:var(--accent-line);background:var(--accent-soft);}
+    .xmp-mode .mh{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+    .xmp-mode .mt{font-family:var(--ui);font-weight:700;font-size:16px;color:var(--creme);
+      display:inline-flex;align-items:center;gap:9px;}
+    .xmp-mode .mt svg{width:18px;height:18px;color:var(--accent);flex:none;}
+    .xmp-mode .badge{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--accent-ink);background:var(--accent);border-radius:999px;padding:3px 9px;}
+    .xmp-mode p{margin:0;font-size:14px;line-height:1.55;color:var(--ink);}
+    .xmp-mode p .em{color:var(--accent);font-weight:600;}
+    @media (max-width:880px){
+      .xmp-showcase{grid-template-columns:1fr;gap:40px;}
+      .xmp-frame{max-width:480px;margin:0 auto;}
+    }
+  </style>
+  <div class="wrap">
+    <div class="section-head reveal" style="margin: 0px 182px 100px">
+      <p class="eyebrow center"><span data-i18n="xmp_eyebrow">Import-Export</span></p>
+      <h2 class="section-title" data-i18n="xmp_title">Focus pour les collectionneurs et les photographes méticuleux.</h2>
+      <p class="lead" data-i18n-html="xmp_lead" style="margin: 18px 27px 0px">Profitez de la haute compatibilité des étiquettes de LiberTag. <br />Importez-y vos photos et taggez-les à grande vitesse. <br />Puis exportez-les dans votre logiciel d'édition favori : vous venez de gagner un temps précieux de labelisation massive de vos clichés.</p>
+    </div>
+
+    <div class="xmp-showcase reveal">
+      <div>
+        <div class="xmp-frame">
+          <img src="uploads/export.png" alt="Écran d'export LiberTag — résolution, tags XMP et renommage des fichiers" />
+        </div>
+        <p class="xmp-cap" data-i18n="xmp_cap">L'écran d'export — résolution et encodage des tags, en deux gestes.</p>
+      </div>
+
+      <div class="xmp-syn">
+        <div class="xmp-block">
+          <p class="eyebrow"><span data-i18n="xmp_exp_eye">Ce qui est exporté</span></p>
+          <h3 data-i18n="xmp_exp_h">Trois champs XMP standards</h3>
+          <ul class="xmp-fields">
+            <li style="padding: 12px 0px 20px; border-width: 0px 0px 1px; border-style: solid; border-color: rgba(212, 162, 74, 0.5); border-radius: 0px">
+              <code>dc:subject</code>
+              <span class="ns">Dublin Core</span>
+              <p data-i18n="xmp_f1_p">Liste plate des noms de tags — lue par tous les logiciels : Lightroom, Photos, Finder, l'Explorateur Windows, digiKam…</p>
+            </li>
+            <li style="border-width: 0px 1px 1px 0px; border-color: rgba(212, 162, 74, 0.5); padding: 3px 0px 15px; margin: 20px 0px 5px">
+              <code>lr:hierarchicalSubject</code>
+              <span class="ns">Lightroom 1.0</span>
+              <p data-i18n-html="xmp_f2_p">Le chemin hiérarchique complet, du parent à l'enfant : <span class="kpath">Parent|Enfant</span>.</p>
+            </li>
+            <li style="border-width: 1px 0px 0px; border-color: rgba(212, 162, 74, 0.5); padding: 25px 0px 15px">
+              <code>xmp:Rating</code>
+              <span class="ns">XMP Basic</span>
+              <p data-i18n="xmp_f3_p">La note de 1 à 5 étoiles — le standard universel d'appréciation (0 = absente du fichier).</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="xmp-block">
+          <p class="eyebrow xmp-mv-title"><span data-i18n="xmp_modes_eye">Modes de sortie</span></p>
+          <div class="xmp-modes">
+            <div class="xmp-mode featured xmp-mv-sidecar" style="background-color: rgba(239, 227, 210, 0.03); border-color: rgba(239, 227, 210, 0.16)">
+              <div class="mh">
+                <span class="mt"><svg><use href="#ic-folder" /></svg><span data-i18n="xmp_m1_t">Sidecar</span></span>
+              </div>
+              <p data-i18n-html="xmp_m1_p">Un fichier <span class="em">.xmp</span> posé à côté de l'image, identique à ce que génère Lightroom. Compatible avec tous les formats — JPG, PNG, HEIC, WEBP, TIFF, RAW.</p>
+            </div>
+            <div class="xmp-mode xmp-mv-embed">
+              <div class="mh">
+                <span class="mt"><svg><use href="#ic-img" /></svg><span data-i18n="xmp_m2_t">Gravé dans la photo</span></span>
+              </div>
+              <p data-i18n-html="xmp_m2_p">Le XMP est inscrit dans le fichier lui-même. Un <span class="em">JPEG</span> est patché sans aucune perte ; les autres formats sont réencodés en JPEG qualité 92.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="xmp-mode featured xmp-mv-bonus">
+          <div class="mh">
+            <span class="mt"><svg><use href="#ic-tag" /></svg><span data-i18n="xmp_m3_t">Renommage de masse des fichiers</span></span>
+            <span class="badge" data-i18n="xmp_bonus">Bonus</span>
+          </div>
+          <p data-i18n="xmp_m3_p">Renommez tous vos exports d'un seul geste selon un modèle — séquence, date, dimensions… Vos clichés arrivent déjà nommés proprement.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PRICING ============================ -->
+<section class="band band-seam" id="pricing">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow center"><span data-i18n="price_eyebrow">Offre de lancement</span></p>
+      <h2 class="section-title" data-i18n="price_title">Une licence à vie pour une tranquillité d'esprit</h2>
+      <p class="lead" data-i18n="price_lead">Pas d'abonnement, jamais de pubs, et un prix faramineusement bas pour la première vague de curieux.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="plan reveal" style="padding: 34px 32px 36px; height: 390px">
+        <h3 data-i18n="plan1_t">Freemium</h3>
+        <p class="ptag" data-i18n="plan1_tag">Taguer gratuitement</p>
+        <div class="price"><span class="amt" data-i18n="plan1_price">0 €</span><span class="per" data-i18n="plan1_per">pour toujours</span></div>
+        <ul style="margin: 0px 0px 28px">
+          <li><svg width="18" height="18"><use href="#ic-check" /></svg> <span data-i18n="plan1_f1">Toutes les fonctionnalités SANS pubs</span></li>
+          <li><svg width="18" height="18"><use href="#ic-check" /></svg> <span data-i18n="plan1_f2">Usage illimité dans le temps</span></li>
+          <li class="off"><svg width="18" height="18"><use href="#ic-close" /></svg> <span data-i18n="plan1_f3">Limite de 20 tags</span></li>
+          <li class="off"><svg width="18" height="18"><use href="#ic-close" /></svg> <span data-i18n="plan1_f4">Limite de 20 photos par export</span></li>
+        </ul>
+      </div>
+      <div class="plan featured reveal" style="height: 390px">
+        <span class="plan-flag" data-i18n="plan2_flag">Offre de lancement</span>
+        <h3 data-i18n="plan2_t">Premium</h3>
+        <p class="ptag" data-i18n="plan2_tag">Des collections illimitées de tags</p>
+        <div class="price"><span class="amt" data-i18n="plan2_price">4,99 €</span><span class="per" data-i18n="plan2_per">pour toujours</span></div>
+        <ul>
+          <li><svg width="18" height="18"><use href="#ic-check" /></svg> <span data-i18n="plan2_f1">Toutes les fonctionnalités</span></li>
+          <li><svg width="18" height="18"><use href="#ic-check" /></svg> <span data-i18n="plan2_f2">Licence à vie</span></li>
+          <li><svg width="18" height="18"><use href="#ic-check" /></svg> <span data-i18n="plan2_f3">Mises à jour gratuites</span></li>
+          <li><svg width="18" height="18"><use href="#ic-check" /></svg> <span data-i18n="plan2_f4">Zéro pubs</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pricing-cta reveal">
+      <a href="#download" class="btn btn-gold" data-i18n="plan2_cta">Télécharger</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="band band-panel band-seam" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow center"><span data-i18n="faq_eyebrow">Questions fréquentes</span></p>
+      <h2 class="section-title" data-i18n="faq_title">Tout ce qu'il faut savoir</h2>
+    </div>
+    <div class="faq-list" id="faqList"></div>
+  </div>
+</section>
+
+<!-- ============================ CTA / DOWNLOAD ============================ -->
+<section class="cta-band" id="download" style="padding: 2px 0px 120px">
+  <div class="wrap reveal" style="margin: 90px auto 0px">
+    <img class="mark-big" src="assets/app-icon.png" alt="LiberTag" />
+    <h2 class="display" data-i18n-html="cta_title">Des milliers de photos.<br /><em>Zéro chaos.</em></h2>
+    <p class="lead" style="margin:0 auto" data-i18n-html="cta_lead">Téléchargez LiberTag <br>et magnifiez vos photos dans les albums qu'elles méritent.</p>
+    <div class="cta-actions">
+      <a href="#" class="play-badge">
+        <svg class="glyph"><use href="#ic-play" /></svg>
+        <span class="pb-text"><span class="pb-small" data-i18n="badge_small">Disponible sur</span><span class="pb-big">Google Play</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="wrap f-top">
+    <div class="f-brand">
+      <a href="#top" class="logo-lockup"><img class="mark" style="width:30px;height:30px" src="assets/app-icon.png" alt="" /><img class="wordmark-img" src="assets/wordmark-light.png" alt="LiberTag" /></a>
+      <p data-i18n-html="foot_tagline">L'application qui libère<br />vos photos de l'oubli</p>
+    </div>
+    <div class="f-col f-col-plan">
+      <h5 data-i18n="foot_plan">Plan</h5>
+      <ul class="f-plan-grid">
+        <li><a href="#tags" data-i18n="tagsys_eyebrow">Le système de tags</a></li>
+        <li><a href="#features" data-i18n="feat_eyebrow">Plaisir des retrouvailles</a></li>
+        <li><a href="#services" data-i18n="nav_features">Fonctionnalités</a></li>
+        <li><a href="#import-export" data-i18n="nav_import">Import-Export</a></li>
+        <li><a href="#pricing" data-i18n="price_eyebrow">Offre de lancement</a></li>
+        <li><a href="#faq" data-i18n="faq_eyebrow">Questions fréquentes</a></li>
+      </ul>
+    </div>
+    <div class="f-col f-col-about">
+      <h5 data-i18n="foot_company">À propos</h5>
+      <ul>
+        <li><a href="Confidentialite.html" data-i18n="foot_privacy">Confidentialité</a></li>
+        <li><a href="Conditions.html" data-i18n="foot_terms">Conditions</a></li>
+        <li><a href="mailto:admin@fluxart.fr" data-i18n="foot_contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  <div class="wrap">
+    <div class="f-bottom">
+      <span data-i18n-html="foot_copy">© 2026 <a href="https://www.fluxart.fr">FluXart</a> — Conçu avec soin pour Android.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var pal = ['#3a2a18','#4a361f','#5a4226','#6b4e2b','#7c5a30','#2e2114','#8a6736','#4a3a24','#5f4626','#3f2e1b','#946f3a','#33251a'];
+  document.querySelectorAll('.vp-screen[data-cols]').forEach(function (s) {
+    var cols = +s.dataset.cols;
+    s.style.gridTemplateColumns = 'repeat(' + cols + ',1fr)';
+    var rows = Math.max(2, Math.round(cols * 2.05));
+    s.style.gridTemplateRows = 'repeat(' + rows + ',1fr)';
+    var n = cols * rows;
+    for (var i = 0; i < n; i++) {
+      var t = document.createElement('i');
+      t.style.background = pal[(i * 5 + cols * 3) % pal.length];
+      s.appendChild(t);
+    }
+  });
+  document.querySelectorAll('.vp-screen[data-mode="swipe"]').forEach(function (s) {
+    s.innerHTML =
+      '<span class="vp-swipe-chev l"><svg width="11" height="11"><use href="#fx-chev-l"/></svg></span>' +
+      '<div class="vp-swipe-photo"></div>' +
+      '<span class="vp-swipe-chev r"><svg width="11" height="11"><use href="#fx-chev-r"/></svg></span>';
+  });
+})();
+</script>
+
+<div id="tweaks-root"></div>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#15100F" />
+    <rect x="30" y="20" width="40" height="50" rx="8" fill="none" stroke="#D4A24A" stroke-width="4" />
+    <circle cx="50" cy="33" r="5" fill="none" stroke="#D4A24A" stroke-width="3" />
+    <path d="M37 60 L46 48 L53 54 L62 42 L70 60 Z" fill="#D4A24A" />
+  </svg>
+</template>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script src="site.js"></script>
+<script type="text/babel" src="site-tweaks.jsx"></script>
 </body>
 </html>
