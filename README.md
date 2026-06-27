@@ -1,2 +1,2 @@
-# Libertag
-Site vitrine de l'application LiberTag
+# LiberTag
+Site vitrine de l'application Android LiberTag
